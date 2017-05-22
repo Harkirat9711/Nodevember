@@ -46,7 +46,7 @@ services:
         container_name: app3
         ports:
             - "83:80"
-    app3:
+    app4:
         build: app
         image: hayderimran7/app:cs6320
         container_name: app4
