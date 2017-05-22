@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+    mongo:
+        build: mongo
+        image: hayderimran7/mongo:cs6320
+        container_name: mongo
+        volumes:
+            - /tmp/mongo_logs:/logs
+            - /tmp/mongo_data:/data
+        ports:
+            - "27017:27017"
+    haproxy:
+        build: haproxy
+        image: hayderimran7/haproxy:cs6320
+        container_name: haproxy
+        volumes:
+            - /tmp/haproxy_logs:/logs
+        ports:
+            - "80:80"
+
+    redis:
+        build: redis
+        image: hayderimran7/redis:cs6320
+        container_name: redis
+        volumes:
+            - /tmp/redis_data:/data
+        ports:
+            - "6379:6379"
+
+    app1:
+        build: app
+        image: hayderimran7/app:cs6320
+        container_name: app1
+        ports:
+            - "81:80"
+    app2:
+        build: app
+        image: hayderimran7/app:cs6320
+        container_name: app2
+        ports:
+            - "82:80"
+    app3:
+        build: app
+        image: hayderimran7/app:cs6320
+        container_name: app3
+        ports:
+            - "83:80"
