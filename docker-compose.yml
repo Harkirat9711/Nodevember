@@ -12,7 +12,7 @@ services:
             - "27017:27017"
     haproxy:
         build: haproxy
-        image: hayderimran7/haproxy:cs6320
+        image: hayderimran7/haproxy:cs6320.4
         container_name: haproxy
         volumes:
             - /tmp/haproxy_logs:/logs
@@ -34,21 +34,29 @@ services:
         container_name: app1
         ports:
             - "81:80"
+        links:
+            - haproxy
     app2:
         build: app
         image: hayderimran7/app:cs6320
         container_name: app2
         ports:
             - "82:80"
+        links:
+            - haproxy
     app3:
         build: app
         image: hayderimran7/app:cs6320
         container_name: app3
         ports:
             - "83:80"
+        links:
+            - haproxy
     app4:
         build: app
         image: hayderimran7/app:cs6320
         container_name: app4
         ports:
             - "84:80"
+        links:
+            - haproxy
